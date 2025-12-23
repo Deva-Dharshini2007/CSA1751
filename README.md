@@ -100,7 +100,7 @@ While OPEN ≠ Ø, do
 5.1 Remove the node N from OPEN having the minimum heuristic value
 5.2 If N is the goal node, return the solution path
 5.3 Add node N to CLOSED
-5.4 For each successor M of N, do
+ For each successor M of N, do
     a) If M is not in OPEN and CLOSED, insert M into OPEN
 
 End While
