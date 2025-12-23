@@ -10,8 +10,11 @@ Mark the start node S as visited
 Insert S into queue Q
 
 While Q ≠ Ø, do
+
 Remove the front node from Q and call it N
+
 Process (visit) node N
+
 For each adjacent node M of N, do
     a) If M is not visited, then
         i) Mark M as visited
