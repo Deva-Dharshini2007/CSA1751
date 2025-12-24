@@ -1,45 +1,92 @@
-from collections import deque
-
-# Graph definition
 graph = {
-    0: [1, 2],
-    1: [0, 3, 4],
-    2: [0, 5],
-    3: [1],
-    4: [1],
-    5: [2]
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F', 'G'],
+    'D': [],
+    'E': [],
+    'F': [],
+    'G': []
 }
 
-# BFS Function
-def bfs(graph, start):
-    visited = set()
-    queue = deque([start])
-    visited.add(start)
+visited = set()
 
-    print("BFS:", end=" ")
-    while queue:
-        node = queue.popleft()
-        print(node, end=" ")
+def dfs(node):
+    visited.add(node)
+    print(node, end=" ")
 
-        for neighbour in graph[node]:
-            if neighbour not in visited:
-                visited.add(neighbour)
-                queue.append(neighbour)
-    print()
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            dfs(neighbor)
 
-# DFS Function (Recursive)
-def dfs(graph, start, visited=None):
-    if visited is None:
-        visited = set()
-        print("DFS:", end=" ")
+print("DFS Traversal:")
+dfs('A')
+graph = {
+    1: [2, 3],
+    2: [4, 5],
+    3: [],
+    4: [],
+    5: []
+}
 
-    visited.add(start)
-    print(start, end=" ")
+visited = set()
 
-    for neighbour in graph[start]:
-        if neighbour not in visited:
-            dfs(graph, neighbour, visited)
+def dfs(node):
+    visited.add(node)
+    print(node, end=" ")
 
-# Function calls
-bfs(graph, 0)
-dfs(graph, 0)
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            dfs(neighbor)
+
+print("DFS Traversal:")
+dfs(1)
+
+graph = {
+    1: [2, 7],
+    2: [3, 6],
+    3: [4, 5],
+    4: [],
+    5: [],
+    6: [],
+    7: [8, 10],
+    8: [9],
+    9: [],
+    10: []
+}
+
+visited = set()
+
+def dfs(node):
+    visited.add(node)
+    print(node, end=" ")
+
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            dfs(neighbor)
+
+print("DFS Traversal:")
+dfs(1)
+graph = {
+    0: [1],
+    1: [3, 2],
+    2: [4],
+    3: [7],
+    4: [5, 6],
+    5: [],
+    6: [],
+    7: []
+}
+
+visited = set()
+
+def dfs(node):
+    visited.add(node)
+    print(node, end=" ")
+
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            dfs(neighbor)
+
+print("DFS Traversal:")
+dfs(0)
+
