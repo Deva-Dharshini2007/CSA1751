@@ -1,28 +1,154 @@
 # CSA1751
 Artificial intelligence  
 **Breadth First Search**
-BEGIN
+step 1: Represent the graph using an adjacency list
 
-Initialize an empty queue Q
+graph = {
+    0: [1, 2],
+    1: [0, 3, 4],
+    2: [0, 5],
+    3: [1],
+    4: [1],
+    5: [2]
+}
 
-Mark the start node S as visited
 
-Insert S into queue Q
+Step 2: Create an empty set Visited
 
-While Q ≠ Ø, do
+Step 3: Create an empty queue Q
 
-Remove the front node from Q and call it N
+Step 4: Add the start node to Visited
 
-Process (visit) node N
+Step 5: Enqueue the start node into Q
 
-For each adjacent node M of N, do
-    a) If M is not visited, then
-        i) Mark M as visited
-        ii) Insert M into Q
+Step 6: While Q is not empty, do the following:
+
+Dequeue a node from Q and store it as CurrentNode
+
+Visit (print) CurrentNode
+
+For each neighbor of CurrentNode in the graph:
+
+If the neighbor is not in Visited:
+
+Add the neighbor to Visited
+
+Enqueue the neighbor into Q
+
+Step 7: Repeat until the queue becomes empty
+
+Step 8: End BFS
+
+**BFS SECOND ALGORITHM**
+Represent the graph using an adjacency list
+
+Create an empty queue Q
+
+Create an empty set/list Visited
+
+Add StartNode to Visited
+
+Enqueue StartNode into Q
+
+While Q is not empty do
+
+  Dequeue a node from Q → CurrentNode
+
+  Visit CurrentNode
+
+  For each neighbor of CurrentNode in graph do
+
+    If neighbor is not in Visited then
+
+      Add neighbor to Visited
+
+      Enqueue neighbor into Q
+
+    End If
+
+  End For
 
 End While
 
-END
+End BFS
+
+**BFS THIRD ALGORITHM**
+Represent the graph using an adjacency list
+
+Create an empty queue Q
+
+Create an empty set/list Visited
+
+Add StartNode to Visited
+
+Enqueue StartNode into Q
+
+While Q is not empty do
+
+  Dequeue a node from Q → CurrentNode
+
+  If CurrentNode equals TargetNode then
+
+    Return Reachable
+
+  End If
+
+  For each neighbor of CurrentNode in graph do
+
+    If neighbor is not in Visited then
+
+      Add neighbor to Visited
+
+      Enqueue neighbor into Q
+
+    End If
+
+  End For
+
+End While
+
+Return Not Reachable
+
+End BFS
+
+**BFS FOURTH ALGORITHM**
+Represent the graph using an adjacency list
+
+Create an empty queue Q
+
+Create a dictionary/array Distance
+
+Create an empty set/list Visited
+
+Add StartNode to Visited
+
+Set Distance[StartNode] = 0
+
+Enqueue StartNode into Q
+
+While Q is not empty do
+
+  Dequeue a node from Q → CurrentNode
+
+  For each neighbor of CurrentNode in graph do
+
+    If neighbor is not in Visited then
+
+      Add neighbor to Visited
+
+      Set Distance[neighbor] = Distance[CurrentNode] + 1
+
+      Enqueue neighbor into Q
+
+    End If
+
+  End For
+
+End While
+
+Return Distance[TargetNode]
+
+End BFS
 
 **Depth First Search**
 
