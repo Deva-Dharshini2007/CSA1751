@@ -2,77 +2,103 @@
 Artificial intelligence  
 
 **BFS FIRST SUM ALGORITHM**
-(Start Node = A)
-Represent the graph using an adjacency list
-Create an empty queue Q
-Create an empty list Visited
-Add A to Visited
-Enqueue A into Q
-While Q is not empty do
-    Dequeue a node from Q → CurrentNode
-    Visit CurrentNode
-    For each neighbor of CurrentNode do
-        If neighbor is not in Visited then
-            Add neighbor to Visited
-            Enqueue neighbor into Q
-        End If
-    End For
-End While
-End BFS
+1. Represent the graph using an adjacency list.
+
+2. Create an empty queue Q.
+
+3. Create an empty list Visited.
+
+4. Add A to Visited.
+
+5. Enqueue A into Q.
+
+6. While Q is not empty do:
+   a. Dequeue a node from Q → CurrentNode.
+   b. Visit CurrentNode.
+   c. For each neighbor of CurrentNode do:
+      i. If neighbor is not in Visited then:
+         - Add neighbor to Visited.
+         - Enqueue neighbor into Q.
+      ii. End If
+   d. End For
+
+7. End While
+
+8. End BFS
 
 **BFS SECOND SUM ALGORITHM**
-(Start Node = 1)
-Represent the graph using an adjacency list
-Create an empty queue Q
-Create an empty list Visited
-Add 1 to Visited
-Enqueue 1 into Q
-While Q is not empty do
-    Dequeue a node from Q → CurrentNode
-    Visit CurrentNode
-    For each neighbor of CurrentNode do
-        If neighbor is not in Visited then
-            Add neighbor to Visited
-            Enqueue neighbor into Q
-        End If
-    End For
-End While
-End BFS
+1. Represent the graph using an adjacency list.
+
+2. Create an empty queue Q.
+
+3. Create an empty list Visited.
+
+4. Add 1 to Visited.
+
+5. Enqueue 1 into Q.
+
+6. While Q is not empty do:
+   a. Dequeue a node from Q → CurrentNode.
+   b. Visit CurrentNode.
+   c. For each neighbor of CurrentNode do:
+      i. If neighbor is not in Visited then:
+         - Add neighbor to Visited.
+         - Enqueue neighbor into Q.
+      ii. End If
+   d. End For
+
+7. End While
+
+8. End BFS
 
 **BFS THIRD SUM ALGORITHM**
-(Start Node = 1)
-Represent the graph using an adjacency list
-Create an empty queue Q
-Create an empty list Visited
-Add 1 to Visited
-Enqueue 1 into Q
-While Q is not empty do
-    Dequeue a node from Q → CurrentNode
-    Visit CurrentNode
-    For each neighbor of CurrentNode do
-        If neighbor is not in Visited then
-            Add neighbor to Visited
-            Enqueue neighbor into Q
-        End If
-    End For
-End While
-End BFS
+1. Represent the graph using an adjacency list.
+
+2. Create an empty queue Q.
+
+3. Create an empty list Visited.
+
+4. Add 1 to Visited.
+
+5. Enqueue 1 into Q.
+
+6. While Q is not empty do:
+   a. Dequeue a node from Q → CurrentNode.
+   b. Visit CurrentNode.
+   c. For each neighbor of CurrentNode do:
+      i. If neighbor is not in Visited then:
+         - Add neighbor to Visited.
+         - Enqueue neighbor into Q.
+      ii. End If
+   d. End For
+
+7. End While
+
+8. End BFS
 
 **BFS FOURTH ALGORITHM**
-(Start Node = 0)
-Represent the graph using an adjacency list
-Create an empty queue Q
-Create an empty list Visited
-Add 0 to Visited
-Enqueue 0 into Q
-While Q is not empty do
-    Dequeue a node from Q → CurrentNode
-    Visit CurrentNode
-    For each neighbor of CurrentNode do
-        If neighbor is not in Visited then
-            Add neighbor to Visited
-            Enqueue neighbor into Q
-        End If
-    End For
+1. Represent the graph using an adjacency list.
+
+2. Create an empty queue Q.
+
+3. Create an empty list Visited.
+
+4. Add 0 to Visited.
+
+5. Enqueue 0 into Q.
+
+6. While Q is not empty do:
+   a. Dequeue a node from Q → CurrentNode.
+   b. Visit CurrentNode.
+   c. For each neighbor of CurrentNode do:
+      i. If neighbor is not in Visited then:
+         - Add neighbor to Visited.
+         - Enqueue neighbor into Q.
+      ii. End If
+   d. End For
+
+7. End While
+
+8. End BFS
 End While
 End BFS
