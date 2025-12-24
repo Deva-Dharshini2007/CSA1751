@@ -1,73 +1,83 @@
-from collections import deque
 import heapq
 
-# Graph representation
-# For BFS & DFS → normal adjacency list
-# For UCS → (node, cost)
-graph = {
-    'A': [('B', 1), ('C', 4)],
-    'B': [('A', 1), ('D', 2), ('E', 5)],
-    'C': [('A', 4), ('F', 3)],
-    'D': [('B', 2)],
-    'E': [('B', 5), ('F', 1)],
-    'F': [('C', 3), ('E', 1)]
-}
+def UCS_Sum1():
+    graph = {
+        'S': [('A', 1), ('G', 12)],
+        'A': [('B', 3), ('C', 1)],
+        'B': [('D', 3)],
+        'C': [('D', 1), ('G', 2)],
+        'D': [('G', 3)],
+        'G': []
+    }
 
-# ---------------- BFS ----------------
-def bfs(start):
-    visited = set()
-    queue = deque([start])
-    visited.add(start)
+    start = 'S'
+    goal = 'G'
 
-    print("BFS:", end=" ")
-    while queue:
-        node = queue.popleft()
-        print(node, end=" ")
+    pq = [(0, start)]
+    cost_so_far = {'S': 0}
+    parent = {'S': None}
 
-        for neighbour, _ in graph[node]:
-            if neighbour not in visited:
-                visited.add(neighbour)
-                queue.append(neighbour)
-    print()
-
-# ---------------- DFS ----------------
-def dfs(start):
-    visited = set()
-
-    def dfs_recursive(node):
-        visited.add(node)
-        print(node, end=" ")
-
-        for neighbour, _ in graph[node]:
-            if neighbour not in visited:
-                dfs_recursive(neighbour)
-
-    print("DFS:", end=" ")
-    dfs_recursive(start)
-    print()
-
-# -------- Uniform Cost Search --------
-def ucs(start, goal):
-    priority_queue = [(0, start)]
-    visited = set()
-
-    while priority_queue:
-        cost, node = heapq.heappop(priority_queue)
+    while pq:
+        cost, node = heapq.heappop(pq)
 
         if node == goal:
-            print(f"UCS: Cost to reach {goal} = {cost}")
+            break
+
+        for neighbor, weight in graph[node]:
+            new_cost = cost + weight
+            if neighbor not in cost_so_far or new_cost < cost_so_far[neighbor]:
+                cost_so_far[neighbor] = new_cost
+                parent[neighbor] = node
+                heapq.heappush(pq, (new_cost, neighbor))
+
+    # Path reconstruction
+    path = []
+    n = goal
+    while n:
+        path.append(n)
+        n = parent[n]
+    path.reverse()
+
+    print("Path:", path)
+    print("Total Cost:", cost_so_far[goal])
+
+
+UCS_Sum1()
+
+import heapq
+
+def UCS_Sum2():
+    graph = {
+        'S': [('A', 8), ('B', 2), ('C', 7)],
+        'A': [('D', 8), ('E', 15)],
+        'B': [('G', 10)],
+        'C': [('G', 6)],
+        'D': [],
+        'E': [],
+        'G': []
+    }
+
+    start = 'S'
+    goals = ['D', 'E', 'G']
+
+    pq = [(0, start, [start])]
+    visited = set()
+
+    while pq:
+        cost, node, path = heapq.heappop(pq)
+
+        if node in visited:
+            continue
+
+        visited.add(node)
+
+        if node in goals:
+            print("Path:", path)
+            print("Total Cost:", cost)
             return
 
-        if node not in visited:
-            visited.add(node)
+        for neighbor, weight in graph[node]:
+            heapq.heappush(pq, (cost + weight, neighbor, path + [neighbor]))
 
-            for neighbour, weight in graph[node]:
-                if neighbour not in visited:
-                    heapq.heappush(priority_queue, (cost + weight, neighbour))
 
-    print("Goal not reachable")
-
-# ------------ Function Calls ----------
-bfs('A')
-dfs('A')
-ucs('A', 'F')
+UCS_Sum2()
