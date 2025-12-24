@@ -1,129 +1,105 @@
 from collections import deque
 
-# Graph definition
 graph = {
-    0: [1, 2],
-    1: [0, 3, 4],
-    2: [0, 5],
-    3: [1],
-    4: [1],
-    5: [2]
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F', 'G'],
+    'D': [],
+    'E': [],
+    'F': [],
+    'G': []
 }
 
-def bfs(start):
-    visited = set()
-    queue = deque()
+visited = set()
+queue = deque(['A'])
 
-    visited.add(start)
-    queue.append(start)
+visited.add('A')
 
-    while queue:
-        node = queue.popleft()
-        print(node, end=" ")
+print("BFS Traversal:")
+while queue:
+    node = queue.popleft()
+    print(node, end=" ")
 
-        for neighbour in graph[node]:
-            if neighbour not in visited:
-                visited.add(neighbour)
-                queue.append(neighbour)
-
-# Start BFS from node 0
-bfs(0)
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            visited.add(neighbor)
+            queue.append(neighbor)
 
 from collections import deque
 
 graph = {
-    0: [1, 2],
-    1: [0, 3, 4],
-    2: [0, 5],
-    3: [1],
-    4: [1],
-    5: [2]
-}
-
-def bfs_shortest_path(start):
-    visited = set()
-    distance = {}
-    queue = deque()
-
-    visited.add(start)
-    distance[start] = 0
-    queue.append(start)
-
-    while queue:
-        node = queue.popleft()
-
-        for neighbour in graph[node]:
-            if neighbour not in visited:
-                visited.add(neighbour)
-                distance[neighbour] = distance[node] + 1
-                queue.append(neighbour)
-
-    return distance
-
-print(bfs_shortest_path(0))
-
-from collections import deque
-
-graph = {
-    0: [1, 2],
-    1: [3, 4],
-    2: [5],
+    1: [2, 3],
+    2: [4, 5],
     3: [],
     4: [],
     5: []
 }
 
-def bfs_levels(start):
-    visited = set()
-    queue = deque()
-
-    visited.add(start)
-    queue.append(start)
-
-    while queue:
-        level_size = len(queue)
-
-        for _ in range(level_size):
-            node = queue.popleft()
-            print(node, end=" ")
-
-            for neighbour in graph[node]:
-                if neighbour not in visited:
-                    visited.add(neighbour)
-                    queue.append(neighbour)
-        print()  # new line for each level
-
-bfs_levels(0)
-
+visited = set()
+queue = deque([1])
+visited.add(1)
 
 from collections import deque
 
 graph = {
-    0: [1],
-    1: [0],
-    2: [3],
-    3: [2],
-    4: []
+    1: [2, 7],
+    2: [3, 6],
+    3: [4, 5],
+    4: [],
+    5: [],
+    6: [],
+    7: [8, 10],
+    8: [9],
+    9: [],
+    10: []
 }
 
-def bfs_disconnected():
-    visited = set()
+visited = set()
+queue = deque([1])
+visited.add(1)
 
-    for start in graph:
-        if start not in visited:
-            queue = deque()
-            queue.append(start)
-            visited.add(start)
+print("BFS Traversal:")
+while queue:
+    node = queue.popleft()
+    print(node, end=" ")
 
-            while queue:
-                node = queue.popleft()
-                print(node, end=" ")
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            visited.add(neighbor)
+            queue.append(neighbor)
 
-                for neighbour in graph[node]:
-                    if neighbour not in visited:
-                        visited.add(neighbour)
-                        queue.append(neighbour)
+print("BFS Traversal:")
+while queue:
+    node = queue.popleft()
+    print(node, end=" ")
 
-bfs_disconnected()
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            visited.add(neighbor)
+            queue.append(neighbor)
+from collections import deque
 
+graph = {
+    0: [1],
+    1: [3, 2],
+    2: [4],
+    3: [7],
+    4: [5, 6],
+    5: [],
+    6: [],
+    7: []
+}
 
+visited = set()
+queue = deque([0])
+visited.add(0)
+
+print("BFS Traversal:")
+while queue:
+    node = queue.popleft()
+    print(node, end=" ")
+
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            visited.add(neighbor)
+            queue.append(neighbor)
