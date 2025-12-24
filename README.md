@@ -2,6 +2,7 @@
 Artificial intelligence  
 
 **BFS  ALGORITHM**
+ 
  Represent the graph using an adjacency list.
 
  Create an empty queue Q.
@@ -32,7 +33,8 @@ Artificial intelligence
  End BFS
 
    **DFS ALGORITHM**
-    1. Represent the graph using an adjacency list.
+  
+1. Represent the graph using an adjacency list.
 
 2. Create an empty set/list Visited.
 
@@ -42,15 +44,19 @@ Artificial intelligence
    b. Visit Node.
    
    c. For each neighbor of Node in Graph do:
-      i. If neighbor is not in Visited then:
-     - Call DFS(neighbor)
+
+    i. If neighbor is not in Visited then:
+    
+    - Call DFS(neighbor)
      
       ii. End If
 
     d. End For
 
 5. End DFS
+
   **UCS AGORITHM**
+
  1. Represent the graph using an adjacency list with edge costs.
 
 2. Create an empty priority queue PQ (ordered by path cost).
