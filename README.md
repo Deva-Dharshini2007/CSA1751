@@ -67,17 +67,24 @@ Artificial intelligence
 
 5. While PQ is not empty do:
    a. Remove the node with the lowest path cost from PQ → CurrentNode.
-   b. If CurrentNode is the goal node then:
+
+    b. If CurrentNode is the goal node then:
+     
       - Return the path and its cost.
-   c. If CurrentNode is not in Visited then:
+
+    c. If CurrentNode is not in Visited then:
       i. Add CurrentNode to Visited.
-      ii. Visit CurrentNode.
-      iii. For each neighbor of CurrentNode in Graph do:
+
+    ii. Visit CurrentNode.
+
+    iii. For each neighbor of CurrentNode in Graph do:
           - Calculate the total cost to reach neighbor.
           - Insert neighbor into PQ with its total cost.
-      iv. End For
-   d. End If
 
-6. End While
+    iv. End For
 
-7. End UCS  
+    d. End If
+
+7. End While
+
+8. End UCS  
