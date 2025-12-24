@@ -25,6 +25,7 @@ Artificial intelligence
 7. End While
 
 8. End BFS
+
    **DFS ALGORITHM**
     1. Represent the graph using an adjacency list.
 
@@ -32,11 +33,15 @@ Artificial intelligence
 
 3. Define a recursive function DFS(Node):
    a. Add Node to Visited.
+   
    b. Visit Node.
+   
    c. For each neighbor of Node in Graph do:
       i. If neighbor is not in Visited then:
-         - Call DFS(neighbor)
+     - Call DFS(neighbor)
+     
       ii. End If
-   d. End For
 
-4. End DFS
+    d. End For
+
+5. End DFS
