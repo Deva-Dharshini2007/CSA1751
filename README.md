@@ -14,10 +14,15 @@ Artificial intelligence
 
  While Q is not empty do:
   a. Dequeue a node from Q → CurrentNode.
+ 
   b.Visit CurrentNode.
+ 
   c. For each neighbor of CurrentNode do:
+  
   i. If neighbor is not in Visited then:
+  
   Add neighbor to Visited.
+  
   Enqueue neighbor into Q.
   ii. End If
   d. End For
