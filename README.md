@@ -3,17 +3,17 @@ Artificial intelligence
 
 **BFS  ALGORITHM**
  
- Represent the graph using an adjacency list.
+ 1.Represent the graph using an adjacency list.
 
- Create an empty queue Q.
+2. Create an empty queue Q.
 
- Create an empty list Visited.
+3. Create an empty list Visited.
 
- Add A to Visited.
+ 4.Add A to Visited.
 
- Enqueue A into Q.
+ 5.Enqueue A into Q.
 
- While Q is not empty do:
+6. While Q is not empty do:
   a. Dequeue a node from Q → CurrentNode.
  
   b.Visit CurrentNode.
@@ -22,15 +22,15 @@ Artificial intelligence
   
   i. If neighbor is not in Visited then:
   
-  Add neighbor to Visited.
+ 7. Add neighbor to Visited.
   
-  Enqueue neighbor into Q.
+ 8. Enqueue neighbor into Q.
   ii. End If
   d. End For
 
- End While
+ 9.End While
 
- End BFS
+ 10.End BFS
 
    **DFS ALGORITHM**
   
