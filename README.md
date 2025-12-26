@@ -87,9 +87,11 @@ Artificial intelligence
 
 7. End While
 
-8. End UCS**
-  **A star search**
-1. Represent the graph using an adjacency list with edge costs.
+8. End UCS
+
+ **A star search**
+ 
+ 1. Represent the graph using an adjacency list with edge costs.
 
 2. Define a heuristic function h(n) that estimates the cost from node n to the goal.
 
@@ -104,25 +106,25 @@ Artificial intelligence
 
 6. While PQ is not empty do:
 
-       a. Remove the node with the lowest f(n) value from PQ → CurrentNode.
+   a. Remove the node with the lowest f(n) value from PQ → CurrentNode.
 
-       b. If CurrentNode is the Goal node then:
+    b. If CurrentNode is the Goal node then:
             Return the optimal path and its total cost.
 
-       c. If CurrentNode is not in Visited then:
+   c. If CurrentNode is not in Visited then:
 
-            i. Add CurrentNode to Visited
-            ii. Visit CurrentNode
+   i. Add CurrentNode to Visited
+   ii. Visit CurrentNode
 
-            iii. For each neighbor of CurrentNode in Graph do:
+   iii. For each neighbor of CurrentNode in Graph do:
 
-                   - Calculate new_g = g(CurrentNode) + cost(CurrentNode → neighbor)
-                   - Calculate new_f = new_g + h(neighbor)
-                   - Insert neighbor into PQ with values (new_g, new_f)
+    - Calculate new_g = g(CurrentNode) + cost(CurrentNode → neighbor)
+      - Calculate new_f = new_g + h(neighbor)
+        - Insert neighbor into PQ with values (new_g, new_f)
 
-            iv. End For
+    iv. End For
 
-       d. End If
+    d. End If
 
    End While
 
