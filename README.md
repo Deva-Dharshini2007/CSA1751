@@ -171,3 +171,115 @@ End A* Search
 
 End Greedy Best-First Search
 
+**Mini max Algorithm**
+
+1. Define the game state and terminal states.
+
+2. Function MINIMAX(node, depth, isMaximizingPlayer):
+
+   a. If node is a terminal state OR depth is 0:
+             Return the evaluation value of node.
+
+   b. If isMaximizingPlayer is TRUE:
+             i. Set bestValue = -∞
+             ii. For each child of node:
+                    val = MINIMAX(child, depth - 1, FALSE)
+                    bestValue = max(bestValue, val)
+             iii. Return bestValue
+
+   c. Else (Minimizing player):
+             i. Set bestValue = +∞
+             ii. For each child of node:
+                    val = MINIMAX(child, depth - 1, TRUE)
+                    bestValue = min(bestValue, val)
+             iii. Return bestValue
+
+3. Call MINIMAX(root, depth, TRUE) for optimal decision.
+
+**Alpha–Beta Pruning Algorithm**
+
+1. Define the game state and terminal states.
+
+2. Function ALPHABETA(node, depth, α, β, isMaximizingPlayer):
+
+   a. If node is a terminal state OR depth is 0:
+             Return the evaluation value of node.
+
+    b. If isMaximizingPlayer is TRUE:
+             i. bestValue = -∞
+             ii. For each child of node:
+                    val = ALPHABETA(child, depth - 1, α, β, FALSE)
+                    bestValue = max(bestValue, val)
+                    α = max(α, bestValue)
+                    If β ≤ α:
+                        Break   // prune
+             iii. Return bestValue
+
+    c. Else (Minimizing player):
+             i. bestValue = +∞
+             ii. For each child of node:
+                    val = ALPHABETA(child, depth - 1, α, β, TRUE)
+                    bestValue = min(bestValue, val)
+                    β = min(β, bestValue)
+                    If β ≤ α:
+                        Break   // prune
+             iii. Return bestValue
+
+3. Call ALPHABETA(root, depth, -∞, +∞, TRUE)
+
+**Decision Tree Algorithm**
+
+1. Start with the full training dataset.
+
+2. Check if all samples belong to the same class:
+       If yes → create a leaf node with that class and stop.
+
+3. If no:
+   a. Select the best attribute to split the data
+          (using metrics like Information Gain / Gini Index).
+
+   b. Create a decision node based on the selected attribute.
+
+   c. Split the dataset into subsets based on attribute values.
+
+4. Recursively build decision tree by applying the same process
+   to each subset.
+
+5. Stop splitting when:
+       - Maximum depth reached OR
+       - No attributes remaining OR
+       - Very few samples remain
+
+6. Assign the majority class label to leaf nodes when stopping.
+
+End Decision Tree Construction
+
+**Neural Network**
+1. Initialize network architecture:
+       - Number of input neurons
+       - Hidden layer(s)
+       - Output neurons
+   Initialize weights randomly.
+
+2. For each training example:
+
+   Forward Propagation:
+   a. Input data into the input layer.
+   b. Compute activation for each neuron layer by layer.
+   c. Get the output prediction ŷ.
+
+   Backpropagation:
+   d. Compute error = (actual output y - predicted ŷ).
+   e. Calculate gradients (partial derivatives).
+   f. Update weights using learning rate η.
+
+3. Repeat for multiple epochs until:
+       - Error becomes very small OR
+       - Maximum iterations reached
+
+4. Save final weights for prediction.
+
+End Neural Network Training
+
+
+
