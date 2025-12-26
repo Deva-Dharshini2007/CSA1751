@@ -1,112 +1,107 @@
+# ---------- A* Search : Problem 1 ----------
+
 import heapq
 
-def a_star(graph, heuristic, start, goal):
-    pq = []
-    heapq.heappush(pq, (heuristic[start], 0, start, [start]))
+def astar(graph, h, start, goal):
+    pq = [(h[start], start, [start], 0)]
     visited = set()
 
     while pq:
-        f, g, node, path = heapq.heappop(pq)
-
-        if node == goal:
-            return path, g
+        f, node, path, g = heapq.heappop(pq)
 
         if node in visited:
             continue
-
         visited.add(node)
 
-        for neighbour, cost in graph[node]:
-            if neighbour not in visited:
-                new_g = g + cost
-                new_f = new_g + heuristic[neighbour]
-                heapq.heappush(pq, (new_f, new_g, neighbour, path + [neighbour]))
+        if node == goal:
+            print("Optimal Path :", " -> ".join(path))
+            print("Actual Cost g(n) :", g)
+            print("Final f(n)=g+h  :", f)
+            return
 
-    return None
+        for neigh, cost in graph[node]:
+            g2 = g + cost
+            f2 = g2 + h[neigh]
+            heapq.heappush(pq, (f2, neigh, path + [neigh], g2))
+
+    print("No path found")
 
 
-# Graph (node: [(neighbour, cost)])
 graph = {
-    'A': [('B', 1), ('C', 3)],
-    'B': [('D', 3), ('E', 1)],
-    'C': [('F', 5)],
-    'D': [('G', 4)],
-    'E': [('G', 2)],
-    'F': [('G', 2)],
-    'G': []
+    'S': [('A', 10), ('B', 5)],
+    'A': [('C', 5)],
+    'B': [('A', 4), ('D', 7), ('E', 3)],
+    'C': [('F', 4)],
+    'D': [('C', 3)],
+    'E': [('D', 2), ('F', 6)],
+    'F': []
 }
 
-# Heuristic values
-heuristic = {
-    'A': 7,
-    'B': 6,
-    'C': 5,
-    'D': 3,
-    'E': 2,
-    'F': 4,
-    'G': 0
+h = {
+    'S': 11,
+    'A': 6,
+    'B': 9,
+    'C': 3,
+    'D': 2,
+    'E': 1,
+    'F': 0
 }
 
-path, cost = a_star(graph, heuristic, 'A', 'G')
-print("Path:", path)
-print("Cost:", cost)
+print("A* Search — Problem 1")
+astar(graph, h, start='S', goal='F')
 
+# ---------- A* Search : Problem 2 ----------
 
- import heapq
+import heapq
 
-def heuristic(a, b):
-    # Manhattan distance
-    return abs(a[0] - b[0]) + abs(a[1] - b[1])
-
-def a_star(grid, start, goal):
-    rows, cols = len(grid), len(grid[0])
-    pq = []
-    heapq.heappush(pq, (0, 0, start, [start]))
+def astar(graph, h, start, goal):
+    pq = [(h[start], start, [start], 0)]
     visited = set()
 
     while pq:
-        f, g, current, path = heapq.heappop(pq)
+        f, node, path, g = heapq.heappop(pq)
 
-        if current == goal:
-            return path, g
-
-        if current in visited:
+        if node in visited:
             continue
+        visited.add(node)
 
-        visited.add(current)
+        if node == goal:
+            print("Optimal Path :", " -> ".join(path))
+            print("Actual Cost g(n) :", g)
+            print("Final f(n)=g+h  :", f)
+            return
 
-        x, y = current
-        moves = [(0,1), (1,0), (0,-1), (-1,0)]
+        for neigh, cost in graph[node]:
+            g2 = g + cost
+            f2 = g2 + h[neigh]
+            heapq.heappush(pq, (f2, neigh, path + [neigh], g2))
 
-        for dx, dy in moves:
-            nx, ny = x + dx, y + dy
-            next_node = (nx, ny)
+    print("No path found")
 
-            if 0 <= nx < rows and 0 <= ny < cols and grid[nx][ny] == 0:
-                if next_node not in visited:
-                    new_g = g + 1
-                    new_f = new_g + heuristic(next_node, goal)
-                    heapq.heappush(
-                        pq,
-                        (new_f, new_g, next_node, path + [next_node])
-                    )
 
-    return None
+graph = {
+    'A': [('B', 6), ('D', 4)],
+    'B': [('C', 3), ('E', 2)],
+    'C': [('F', 2)],
+    'D': [('E', 3)],
+    'E': [('F', 5), ('G', 3)],
+    'F': [],
+    'G': [('F', 2)]
+}
 
-# Grid (0 = free, 1 = obstacle)
-grid = [
-    [0, 0, 0, 0],
-    [1, 1, 0, 1],
-    [0, 0, 0, 0],
-    [0, 1, 1, 0]
-]
+h = {
+    'A': 8,
+    'B': 6,
+    'C': 2,
+    'D': 4,
+    'E': 3,
+    'F': 0,
+    'G': 1
+}
 
-start = (0, 0)
-goal = (3, 3)
+print("A* Search — Problem 2")
+astar(graph, h, start='A', goal='F')
 
-path, cost = a_star(grid, start, goal)
-print("Path:", path)
-print("Cost:", cost)
 
 
 
