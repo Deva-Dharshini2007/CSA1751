@@ -118,15 +118,15 @@ Artificial intelligence
 
    iii. For each neighbor of CurrentNode in Graph do:
 
-    - Calculate new_g = g(CurrentNode) + cost(CurrentNode → neighbor)
-      - Calculate new_f = new_g + h(neighbor)
-        - Insert neighbor into PQ with values (new_g, new_f)
+     Calculate new_g = g(CurrentNode) + cost(CurrentNode → neighbor)
+     Calculate new_f = new_g + h(neighbor)
+     Insert neighbor into PQ with values (new_g, new_f)
 
-    iv. End For
+   iv. End For
 
     d. End If
 
-   End While
+    End While
 
 7. If goal is not found, return "No path exists".
 
