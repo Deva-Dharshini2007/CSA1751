@@ -1,48 +1,108 @@
+# -------- Greedy Best First Search — Problem 1 --------
+
 import heapq
 
-def gbfs(graph, start, goal, h):
-    """
-    graph : dict -> adjacency list, e.g., { 'A': ['B','C'], ... }
-    start : starting node
-    goal  : goal node
-    h     : heuristic function as a dict, e.g., { 'A': 3, 'B': 2, ... }
-    """
+def greedy_best_first(graph, h, start, goal):
+    pq = [(h[start], start, [start])]
     visited = set()
-    queue = []
-    heapq.heappush(queue, (h[start], start))  # priority queue based on heuristic
 
-    while queue:
-        _, node = heapq.heappop(queue)
+    while pq:
+        _, node, path = heapq.heappop(pq)
+
+        if node in visited:
+            continue
+        visited.add(node)
 
         if node == goal:
-            print(f"Goal {goal} reached!")
+            print("Visited Order :", visited)
+            print("GBFS Path      :", " -> ".join(path))
             return
 
-        if node not in visited:
-            visited.add(node)
-            print(node, end=" ")
+        for neigh in graph[node]:
+            heapq.heappush(pq, (h[neigh], neigh, path + [neigh]))
 
-            for neighbor in graph.get(node, []):
-                if neighbor not in visited:
-                    heapq.heappush(queue, (h[neighbor], neighbor))
+    print("No path found")
 
-# Example usage
+
+# ---- Edit edges as per your notebook graph ----
 graph = {
-    'A': ['B','C'],
-    'B': ['D','E'],
-    'C': ['F'],
-    'D': [],
-    'E': ['F'],
-    'F': []
+    'A': ['D', 'C', 'B'],
+    'D': ['F'],
+    'C': ['F', 'G'],
+    'B': ['E'],
+    'E': ['H'],
+    'H': ['G'],
+    'F': ['G'],
+    'G': []
 }
 
-heuristic = {
-    'A': 5,
-    'B': 4,
-    'C': 2,
-    'D': 6,
-    'E': 1,
-    'F': 0
+# ---- heuristic values h(n) from your notes ----
+h = {
+    'A': 25,
+    'B': 32,
+    'C': 25,
+    'D': 35,
+    'E': 19,
+    'H': 10,
+    'F': 7,
+    'G': 0
 }
 
-gbfs(graph, 'A', 'F', heuristic)
+print("Greedy Best First Search — Problem 1")
+greedy_best_first(graph, h, start='A', goal='G')
+# -------- Greedy Best First Search — Problem 2 --------
+
+import heapq
+
+def greedy_best_first(graph, h, start, goal):
+    pq = [(h[start], start, [start])]
+    visited = set()
+
+    while pq:
+        _, node, path = heapq.heappop(pq)
+
+        if node in visited:
+            continue
+        visited.add(node)
+
+        if node == goal:
+            print("Visited Order :", visited)
+            print("GBFS Path      :", " -> ".join(path))
+            return
+
+        for neigh in graph[node]:
+            heapq.heappush(pq, (h[neigh], neigh, path + [neigh]))
+
+    print("No path found")
+
+
+# ---- graph edges from your notebook ----
+graph = {
+    'P': ['R', 'C', 'A'],
+    'R': ['E', 'C'],
+    'E': ['U', 'S'],
+    'C': ['U', 'M'],
+    'A': ['C', 'M'],
+    'M': ['U', 'J'],
+    'J': ['N'],
+    'U': ['S', 'N'],
+    'N': ['S'],
+    'S': []
+}
+
+# ---- heuristic values h(n) (use values from your page) ----
+h = {
+    'P': 4,
+    'R': 4,
+    'E': 5,
+    'C': 6,
+    'A': 3,
+    'M': 2,
+    'J': 5,
+    'U': 4,
+    'N': 6,
+    'S': 0
+}
+
+print("Greedy Best First Search — Problem 2")
+greedy_best_first(graph, h, start='P', goal='S')
