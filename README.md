@@ -131,4 +131,40 @@ Artificial intelligence
 7. If goal is not found, return "No path exists".
 
 End A* Search
+1. Represent the graph using an adjacency list with edge costs or structure.
+
+2. Define a heuristic function h(n) that estimates the distance from node n to the goal.
+
+3. Create an empty priority queue PQ (ordered by heuristic value h(n)).
+
+4. Create an empty set/list Visited.
+
+5. Insert StartNode into PQ with priority = h(StartNode).
+
+6. While PQ is not empty do:
+
+   a. Remove the node with the lowest heuristic value → CurrentNode.
+
+    b. If CurrentNode is the Goal node then:
+            Return the path found to the goal.
+
+   c. If CurrentNode is not in Visited then:
+
+   i. Add CurrentNode to Visited
+   ii. Visit CurrentNode
+
+   iii. For each neighbor of CurrentNode in Graph do:
+
+   - Calculate heuristic value h(neighbor)
+   - Insert neighbor into PQ with priority = h(neighbor)
+
+    iv. End For
+
+   d. End If
+
+   End While
+
+7. If goal is not reached, return "Path not found".
+
+End Greedy Best-First Search
 
