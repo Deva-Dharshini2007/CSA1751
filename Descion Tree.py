@@ -1,96 +1,195 @@
 import math
-from collections import Counter
-import pprint
+from collections import Counter, defaultdict
 
-# Sample dataset
-dataset = [
-    ['Sunny', 'Hot', 'High', 'False', 'No'],
-    ['Sunny', 'Hot', 'High', 'True', 'No'],
-    ['Overcast', 'Hot', 'High', 'False', 'Yes'],
-    ['Rain', 'Mild', 'High', 'False', 'Yes'],
-    ['Rain', 'Cool', 'Normal', 'False', 'Yes'],
-    ['Rain', 'Cool', 'Normal', 'True', 'No'],
-    ['Overcast', 'Cool', 'Normal', 'True', 'Yes'],
-    ['Sunny', 'Mild', 'High', 'False', 'No'],
-    ['Sunny', 'Cool', 'Normal', 'False', 'Yes'],
-    ['Rain', 'Mild', 'Normal', 'False', 'Yes'],
-    ['Sunny', 'Mild', 'Normal', 'True', 'Yes'],
-    ['Overcast', 'Mild', 'High', 'True', 'Yes'],
-    ['Overcast', 'Hot', 'Normal', 'False', 'Yes'],
-    ['Rain', 'Mild', 'High', 'True', 'No']
+# ---------- Dataset (from your notebook) ----------
+data = [
+    ["sunny",     "hot",  "high",   "weak",   "no"],
+    ["sunny",     "hot",  "high",   "strong", "no"],
+    ["overcast",  "hot",  "high",   "weak",   "yes"],
+    ["rain",      "mild", "high",   "weak",   "yes"],
+    ["rain",      "cool", "normal", "weak",   "yes"],
+    ["rain",      "cool", "normal", "strong", "no"],
+    ["overcast",  "cool", "normal", "strong", "yes"],
+    ["sunny",     "mild", "high",   "weak",   "no"],
+    ["sunny",     "cool", "normal", "weak",   "yes"],
+    ["rain",      "mild", "normal", "weak",   "yes"]
 ]
 
-features = ['Outlook', 'Temperature', 'Humidity', 'Windy']
+attributes = ["Outlook", "Temperature", "Humidity", "Wind", "PlayTennis"]
 
-# Entropy function
-def entropy(data):
-    labels = [row[-1] for row in data]
-    total = len(labels)
-    counts = Counter(labels)
-    ent = 0
-    for count in counts.values():
-        p = count / total
-        ent -= p * math.log2(p)
-    return ent
 
-# Split dataset by feature value
-def split_data(data, feature_index, value):
-    return [row for row in data if row[feature_index] == value]
+# ---------- Entropy Function ----------
+def entropy(rows):
+    label_counts = Counter(row[-1] for row in rows)
+    total = len(rows)
 
-# Choose best feature to split
-def best_feature_to_split(data):
-    base_entropy = entropy(data)
-    best_gain = 0
-    best_feature = -1
-    num_features = len(data[0]) - 1
+    return sum(
+        -(count/total) * math.log2(count/total)
+        for count in label_counts.values()
+    )
 
-    for i in range(num_features):
-        feature_values = set([row[i] for row in data])
-        new_entropy = 0
-        for value in feature_values:
-            subset = split_data(data, i, value)
-            prob = len(subset) / len(data)
-            new_entropy += prob * entropy(subset)
-        info_gain = base_entropy - new_entropy
-        if info_gain > best_gain:
-            best_gain = info_gain
-            best_feature = i
-    return best_feature
 
-# Majority vote
-def majority_vote(labels):
-    return Counter(labels).most_common(1)[0][0]
+# ---------- Information Gain ----------
+def info_gain(rows, attr_index):
+    total_entropy = entropy(rows)
 
-# Build tree recursively
-def build_tree(data, features):
-    labels = [row[-1] for row in data]
+    subsets = defaultdict(list)
+    for row in rows:
+        subsets[row[attr_index]].append(row)
 
-    # If all labels are same, return label
-    if labels.count(labels[0]) == len(labels):
-        return labels[0]
+    weighted_entropy = sum(
+        (len(subset)/len(rows)) * entropy(subset)
+        for subset in subsets.values()
+    )
 
-    # If no features left, return majority
-    if len(features) == 0:
-        return majority_vote(labels)
+    return total_entropy - weighted_entropy
 
-    # Choose best feature
-    best_feat = best_feature_to_split(data)
-    best_feat_name = features[best_feat]
-    tree = {best_feat_name: {}}
 
-    feature_values = set([row[best_feat] for row in data])
-    for value in feature_values:
-        subset = split_data(data, best_feat, value)
-        if not subset:
-            tree[best_feat_name][value] = majority_vote(labels)
-        else:
-            # Remove the used feature from features
-            new_features = features[:best_feat] + features[best_feat+1:]
-            # Remove the used feature column from subset
-            new_subset = [row[:best_feat] + row[best_feat+1:] for row in subset]
-            tree[best_feat_name][value] = build_tree(new_subset, new_features)
-    return tree
+# ---------- Compute IG for all attributes ----------
+print("\nEntropy of Dataset =", round(entropy(data), 4))
 
-# Build and display the tree
-decision_tree = build_tree(dataset, features)
-pprint.pprint(decision_tree)
+for i in range(len(attributes)-1):
+    gain = info_gain(data, i)
+    print(f"Information Gain ({attributes[i]}) = {round(gain, 4)}")
+
+import math
+from collections import Counter, defaultdict
+
+# -------- Dataset from your notebook --------
+# a1 ,  a2 ,  a3 ,  Class
+
+data = [
+    ["True",  "Hot",  "High",   "No"],
+    ["True",  "Hot",  "High",   "No"],
+    ["False", "Hot",  "High",   "Yes"],
+    ["False", "Cool", "Normal", "Yes"],
+    ["False", "Cool", "Normal", "Yes"],
+    ["True",  "Cool", "High",   "No"],
+    ["True",  "Hot",  "High",   "No"],
+    ["True",  "Hot",  "Normal", "Yes"],
+    ["False", "Cool", "Normal", "Yes"],
+    ["False", "Cool", "High",   "Yes"]
+]
+
+attributes = ["a1", "a2", "a3", "Class"]
+
+
+# -------- Entropy --------
+def entropy(rows):
+    labels = Counter(row[-1] for row in rows)
+    total = len(rows)
+
+    return sum(
+        -(c/total) * math.log2(c/total)
+        for c in labels.values()
+    )
+
+
+# -------- Information Gain --------
+def info_gain(rows, attr_index):
+    total_entropy = entropy(rows)
+
+    subsets = defaultdict(list)
+    for row in rows:
+        subsets[row[attr_index]].append(row)
+
+    weighted_entropy = sum(
+        (len(subset)/len(rows)) * entropy(subset)
+        for subset in subsets.values()
+    )
+
+    return total_entropy - weighted_entropy
+
+
+# -------- Run calculations --------
+print("\nEntropy(S) =", round(entropy(data), 4))
+
+for i in range(len(attributes)-1):
+    gain = info_gain(data, i)
+    print(f"Information Gain({attributes[i]}) =", round(gain, 4))
+
+import math
+
+# -------- Loan Approval Dataset --------
+# Income , CreditScore , Collateral , LoanStatus
+
+data = [
+    ["High",   "Good",    "Yes", "Yes"],
+    ["High",   "Good",    "No",  "Yes"],
+    ["Medium", "Good",    "No",  "Yes"],
+    ["Low",    "Good",    "Yes", "Yes"],
+    ["Low",    "Average", "No",  "No"],
+    ["Medium", "Average", "No",  "No"],
+    ["High",   "Poor",    "Yes", "Yes"],
+    ["Medium", "Poor",    "Yes", "No"],
+    ["Low",    "Poor",    "No",  "No"],
+    ["High",   "Average", "Yes", "Yes"]
+]
+
+attributes = ["Income", "CreditScore", "Collateral", "LoanStatus"]
+
+
+# -------- Count Class Values --------
+def class_count(rows):
+    yes = sum(1 for r in rows if r[-1] == "Yes")
+    no  = sum(1 for r in rows if r[-1] == "No")
+    return yes, no
+
+
+# -------- Entropy Function --------
+def entropy(rows):
+    yes, no = class_count(rows)
+    total = yes + no
+    if yes == 0 or no == 0:
+        return 0
+
+    p1 = yes / total
+    p2 = no / total
+
+    return -(p1 * math.log2(p1)) - (p2 * math.log2(p2))
+
+
+# -------- Split Dataset --------
+def split_on_attribute(rows, index):
+    subsets = {}
+    for row in rows:
+        key = row[index]
+        subsets.setdefault(key, []).append(row)
+    return subsets
+
+
+# -------- Information Gain --------
+def info_gain(rows, index):
+    total_entropy = entropy(rows)
+    subsets = split_on_attribute(rows, index)
+
+    weighted_entropy = 0
+
+    print(f"\n--- Attribute: {attributes[index]} ---")
+
+    for value, subset in subsets.items():
+        e = entropy(subset)
+        w = len(subset) / len(rows)
+        weighted_entropy += w * e
+
+        yes, no = class_count(subset)
+
+        print(f"{value} -> {len(subset)} samples  "
+              f"[Yes={yes}, No={no}]  "
+              f"Entropy = {round(e,4)}")
+
+    gain = round(total_entropy - weighted_entropy, 4)
+    print("Information Gain =", gain)
+
+    return gain
+
+
+# -------- MAIN PROGRAM --------
+print("\nTotal Dataset Entropy =", round(entropy(data), 4))
+
+gains = []
+for i in range(len(attributes)-1):
+    gains.append(info_gain(data, i))
+
+best_index = gains.index(max(gains))
+print(f"\nAttribute selected as ROOT NODE = {attributes[best_index]}")
