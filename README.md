@@ -1,7 +1,7 @@
 # CSA1751
 Artificial intelligence  
 
-**BFS  ALGORITHM**
+## BFS  ALGORITHM
  
  1.Represent the graph using an adjacency list.
 
