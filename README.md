@@ -32,7 +32,7 @@ Artificial intelligence
 
  10.End BFS
 
-   **DFS ALGORITHM**
+ ## DFS ALGORITHM
   
 1. Represent the graph using an adjacency list.
 
