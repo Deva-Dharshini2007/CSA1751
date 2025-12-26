@@ -131,6 +131,9 @@ Artificial intelligence
 7. If goal is not found, return "No path exists".
 
 End A* Search
+
+**Greedy breadth first search**
+
 1. Represent the graph using an adjacency list with edge costs or structure.
 
 2. Define a heuristic function h(n) that estimates the distance from node n to the goal.
