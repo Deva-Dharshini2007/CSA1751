@@ -135,7 +135,7 @@ d. End For
 
      End A* Search
 
-**Greedy breadth first search**
+## Greedy breadth first search
 
 1. Represent the graph using an adjacency list with edge costs or structure.
 
@@ -174,7 +174,7 @@ d. End For
 
 End Greedy Best-First Search
 
-**Mini max Algorithm**
+## Mini max Algorithm
 
 1. Define the game state and terminal states.
 
@@ -199,7 +199,7 @@ End Greedy Best-First Search
 
 3. Call MINIMAX(root, depth, TRUE) for optimal decision.
 
-**Alpha–Beta Pruning Algorithm**
+## Alpha–Beta Pruning Algorithm
 
 1. Define the game state and terminal states.
 
@@ -230,7 +230,7 @@ End Greedy Best-First Search
 
 3. Call ALPHABETA(root, depth, -∞, +∞, TRUE)
 
-**Decision Tree Algorithm**
+## Decision Tree Algorithm
 
 1. Start with the full training dataset.
 
@@ -257,7 +257,7 @@ End Greedy Best-First Search
 
 End Decision Tree Construction
 
-**Neural Network**
+## Neural Network
 1. Initialize network architecture:
        - Number of input neurons
        - Hidden layer(s)
