@@ -25,15 +25,15 @@ Artificial intelligence
   
  7. Add neighbor to Visited.
 
-8. Enqueue neighbor into Q.
+ 8. Enqueue neighbor into Q.
 
-ii. End If
+   ii. End If
 
-d. End For
+   d. End For
 
-9.End While
+ 9.End While
 
-10.End BFS
+ 10.End BFS
 
  ## DFS ALGORITHM
   
