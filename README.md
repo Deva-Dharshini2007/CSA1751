@@ -3,286 +3,244 @@ Artificial intelligence
 
 ## BFS  ALGORITHM
  
- 1.Represent the graph using an adjacency list.
+Start
 
- 2. Create an empty queue Q.
+Initialize an empty queue and a visited set
 
- 3. Create an empty list Visited.
+Insert the start node into the queue
 
- 4.Add A to Visited.
+Mark the start node as visited
 
- 5.Enqueue A into Q.
+While the queue is not empty:
 
- 6. While Q is not empty do:
+Remove the front node from the queue
 
- a. Dequeue a node from Q → CurrentNode.
+Check if the node is the goal state
 
- b.Visit CurrentNode.
- 
- c. For each neighbor of CurrentNode do:
-  
- i. If neighbor is not in Visited then:
-  
- 7. Add neighbor to Visited.
+If goal is found, terminate search
 
- 8. Enqueue neighbor into Q.
+Else, expand the node and generate all adjacent nodes
 
-   ii. End If
+For each adjacent node not visited:
 
-   d. End For
+Mark it as visited
 
- 9.End While
+Insert it into the queue
 
- 10.End BFS
+If queue becomes empty and goal not found, report failure
+
+Stop
 
  ## DFS ALGORITHM
-  
-  1. Represent the graph using an adjacency list.
+  Start
 
-  2. Create an empty set/list Visited.
+Initialize an empty stack and a visited set
 
-  3. Define a recursive function DFS(Node):
-    a. Add Node to Visited.
-   
-    b. Visit Node.
-   
-    c. For each neighbor of Node in Graph do:
+Push the start node onto the stack
 
-    i. If neighbor is not in Visited then:
-    
-    - Call DFS(neighbor)
-     
-      ii. End If
+While the stack is not empty:
 
-    d. End For
+Pop the top node from the stack
 
- 5. End DFS
+If node is not visited:
 
+Mark it as visited
+
+Check if it is the goal state
+
+If goal is found, terminate search
+
+Else, push all unvisited adjacent nodes onto the stack
+
+If stack becomes empty and goal not found, report failure
+
+Stop
  ## UCS AGORITHM
+Start
 
- 1. Represent the graph using an adjacency list with edge costs.
+Initialize a priority queue ordered by path cost
 
- 2. Create an empty priority queue PQ (ordered by path cost).
+Insert the start node with cost = 0
 
- 3. Create an empty set/list Visited.
+Initialize an empty visited set
 
- 4. Insert StartNode into PQ with cost = 0.
+While the priority queue is not empty:
 
- 5. While PQ is not empty do:
-   a. Remove the node with the lowest path cost from PQ → CurrentNode.
+Remove the node with the lowest path cost
 
-   b. If CurrentNode is the goal node then:
-     
-      - Return the path and its cost.
+If node is the goal state, terminate search
 
-   c. If CurrentNode is not in Visited then:
-     i. Add CurrentNode to Visited.
+If node is not visited:
 
-     ii. Visit CurrentNode.
+Mark it as visited
 
-     iii. For each neighbor of CurrentNode in Graph do:
-          - Calculate the total cost to reach neighbor.
-          - Insert neighbor into PQ with its total cost.
+Expand the node
 
-     iv. End For
+For each successor:
 
-     d. End If
+Compute cumulative path cost
 
- 7. End While
+Insert successor into priority queue
 
- 8. End UCS
+If queue becomes empty and goal not found, report failure
+
+Stop
+
 
  ## A star search
  
-  1. Represent the graph using an adjacency list with edge costs.
+  Start
 
-  2. Define a heuristic function h(n) that estimates the cost from node n to the goal.
+Initialize an open list (priority queue)
 
-  3. Create an empty priority queue PQ (ordered by f(n) = g(n) + h(n)),
-   where g(n) is the actual path cost from the start node.
+Initialize a closed list (visited nodes)
 
-  4. Create an empty set/list Visited.
+Insert the start node into open list with:
 
-  5. Insert StartNode into PQ with:
-        g(StartNode) = 0
-        f(StartNode) = g(StartNode) + h(StartNode)
+g(n) = 0
 
-  6. While PQ is not empty do:
+f(n) = g(n) + h(n)
 
-   a. Remove the node with the lowest f(n) value from PQ → CurrentNode.
+While open list is not empty:
 
-    b. If CurrentNode is the Goal node then:
-            Return the optimal path and its total cost.
+Select node with minimum f(n)
 
-   c. If CurrentNode is not in Visited then:
+If node is the goal state, reconstruct path and stop
 
-   i. Add CurrentNode to Visited
-   ii. Visit CurrentNode
+Move node from open list to closed list
 
-   iii. For each neighbor of CurrentNode in Graph do:
+Expand node and generate successors
 
-     Calculate new_g = g(CurrentNode) + cost(CurrentNode → neighbor)
-     Calculate new_f = new_g + h(neighbor)
-     Insert neighbor into PQ with values (new_g, new_f)
+For each successor:
 
-   iv. End For
+Calculate g(n), h(n), and f(n)
 
-    d. End If
+If successor is not in closed list, add/update in open list
 
-    End While
+If open list becomes empty and goal not found, report failure
 
-  7. If goal is not found, return "No path exists".
-
-     End A* Search
+Stop
 
 ## Greedy breadth first search
 
-1. Represent the graph using an adjacency list with edge costs or structure.
+Start
 
-2. Define a heuristic function h(n) that estimates the distance from node n to the goal.
+Initialize an open list implemented as a priority queue ordered by heuristic value h(n)
 
-3. Create an empty priority queue PQ (ordered by heuristic value h(n)).
+Insert the start node into the open list
 
-4. Create an empty set/list Visited.
+Initialize an empty closed list
 
-5. Insert StartNode into PQ with priority = h(StartNode).
+While the open list is not empty:
 
-6. While PQ is not empty do:
+Select and remove the node with the minimum heuristic value
 
-   a. Remove the node with the lowest heuristic value → CurrentNode.
+If the selected node is the goal state, terminate search
 
-    b. If CurrentNode is the Goal node then:
-            Return the path found to the goal.
+Add the node to the closed list
 
-   c. If CurrentNode is not in Visited then:
+Expand the node to generate successor states
 
-   i. Add CurrentNode to Visited
-   ii. Visit CurrentNode
+For each successor not in closed list, insert it into the open list
 
-   iii. For each neighbor of CurrentNode in Graph do:
+If the open list becomes empty and the goal is not found, report failure
 
-   - Calculate heuristic value h(neighbor)
-   - Insert neighbor into PQ with priority = h(neighbor)
-
-    iv. End For
-
-   d. End If
-
-   End While
-
-7. If goal is not reached, return "Path not found".
-
-End Greedy Best-First Search
-
+Stop
 ## Mini max Algorithm
 
-1. Define the game state and terminal states.
+ Start
 
-2. Function MINIMAX(node, depth, isMaximizingPlayer):
+Represent the game as a game tree with nodes as game states
 
-   a. If node is a terminal state OR depth is 0:
-             Return the evaluation value of node.
+Assign utility values to terminal states
 
-   b. If isMaximizingPlayer is TRUE:
-             i. Set bestValue = -∞
-             ii. For each child of node:
-                    val = MINIMAX(child, depth - 1, FALSE)
-                    bestValue = max(bestValue, val)
-             iii. Return bestValue
+For a MAX node:
 
-   c. Else (Minimizing player):
-             i. Set bestValue = +∞
-             ii. For each child of node:
-                    val = MINIMAX(child, depth - 1, TRUE)
-                    bestValue = min(bestValue, val)
-             iii. Return bestValue
+Select the maximum value from child nodes
 
-3. Call MINIMAX(root, depth, TRUE) for optimal decision.
+For a MIN node:
+
+Select the minimum value from child nodes
+
+Propagate values upward in the tree
+
+Choose the move with the optimal minimax value
+
+Stop
 
 ## Alpha–Beta Pruning Algorithm
 
-1. Define the game state and terminal states.
+Start
 
-2. Function ALPHABETA(node, depth, α, β, isMaximizingPlayer):
+Initialize α = −∞ and β = +∞
 
-   a. If node is a terminal state OR depth is 0:
-             Return the evaluation value of node.
+Traverse the game tree depth-first
 
-    b. If isMaximizingPlayer is TRUE:
-             i. bestValue = -∞
-             ii. For each child of node:
-                    val = ALPHABETA(child, depth - 1, α, β, FALSE)
-                    bestValue = max(bestValue, val)
-                    α = max(α, bestValue)
-                    If β ≤ α:
-                        Break   // prune
-             iii. Return bestValue
+For MAX node:
 
-    c. Else (Minimizing player):
-             i. bestValue = +∞
-             ii. For each child of node:
-                    val = ALPHABETA(child, depth - 1, α, β, TRUE)
-                    bestValue = min(bestValue, val)
-                    β = min(β, bestValue)
-                    If β ≤ α:
-                        Break   // prune
-             iii. Return bestValue
+Update α = max(α, child value)
 
-3. Call ALPHABETA(root, depth, -∞, +∞, TRUE)
+If α ≥ β, prune remaining branches
+
+For MIN node:
+
+Update β = min(β, child value)
+
+If β ≤ α, prune remaining branches
+
+Continue until terminal or pruned
+
+Return optimal minimax value
+
+Stop
 
 ## Decision Tree Algorithm
 
-1. Start with the full training dataset.
+Start
 
-2. Check if all samples belong to the same class:
-       If yes → create a leaf node with that class and stop.
+Collect and preprocess the training dataset
 
-3. If no:
-   a. Select the best attribute to split the data
-          (using metrics like Information Gain / Gini Index).
+Select the best attribute using a splitting criterion (Information Gain / Gini Index)
 
-   b. Create a decision node based on the selected attribute.
+Create a decision node using the selected attribute
 
-   c. Split the dataset into subsets based on attribute values.
+Partition the dataset based on attribute values
 
-4. Recursively build decision tree by applying the same process
-   to each subset.
+For each partition:
 
-5. Stop splitting when:
-       - Maximum depth reached OR
-       - No attributes remaining OR
-       - Very few samples remain
+If all samples belong to the same class, create a leaf node
 
-6. Assign the majority class label to leaf nodes when stopping.
+Else, repeat steps 3–6 recursively
 
-End Decision Tree Construction
+Stop when no attributes remain or stopping condition is satisfied
 
+Output the decision tree
+
+Stop
 ## Neural Network
-1. Initialize network architecture:
-       - Number of input neurons
-       - Hidden layer(s)
-       - Output neurons
-   Initialize weights randomly.
+Start
 
-2. For each training example:
+Initialize network architecture (input, hidden, output layers)
 
-   Forward Propagation:
-   a. Input data into the input layer.
-   b. Compute activation for each neuron layer by layer.
-   c. Get the output prediction ŷ.
+Initialize weights and biases randomly
 
-   Backpropagation:
-   d. Compute error = (actual output y - predicted ŷ).
-   e. Calculate gradients (partial derivatives).
-   f. Update weights using learning rate η.
+For each training sample:
 
-3. Repeat for multiple epochs until:
-       - Error becomes very small OR
-       - Maximum iterations reached
+Perform forward propagation to compute output
 
-4. Save final weights for prediction.
+Calculate error using a loss function
 
-End Neural Network Training
+Perform backpropagation to compute gradients
+
+Update weights using gradient descent
+
+Repeat training for multiple epochs
+
+Stop when convergence criteria is met
+
+Output trained neural network
+
+Stop
 ## Sum of Integers from 1 to N
 Start
 
