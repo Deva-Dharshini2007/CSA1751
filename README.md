@@ -283,6 +283,238 @@ End Decision Tree Construction
 4. Save final weights for prediction.
 
 End Neural Network Training
+## Sum of Integers from 1 to N
+Start
+
+Read value of N
+
+If N = 0, sum = 0
+
+Else add N to sum of (N−1)
+
+Display sum
+
+Stop
+## Database with Name and DOB
+Start
+
+Store facts with name and date of birth
+
+Accept name as query input
+
+Search database for matching name
+
+Display corresponding DOB
+
+Stop
+## Student–Teacher–Subject Code Database
+Start
+
+Store student, teacher, and subject code as facts
+
+Accept query (student/teacher/subject)
+
+Match query with database
+
+Display related details
+
+Stop
+## Planets Database
+Start
+
+Store planet information as facts
+
+Accept planet name as input
+
+Search for planet in database
+
+Display planet details
+
+Stop
+## Towers of Hanoi
+Start
+
+Read number of disks N
+
+If N = 1, move disk directly
+
+Else
+
+Move N−1 disks from source to auxiliary
+
+Move largest disk to destination
+
+Move N−1 disks from auxiliary to destination
+
+Display moves
+
+Stop
+## Bird Can Fly or Not
+Start
+
+Store bird and flying ability as facts
+
+Accept bird name as input
+
+Check if bird can fly
+
+Display result (can fly / cannot fly)
+
+Stop
+## Family Tree
+Start
+
+Store parent relationships
+
+Define rules for father, mother, sibling, grandparent
+
+Accept family query
+
+Infer relationship using rules
+
+Display result
+
+Stop
+## Dieting System Based on Disease
+Start
+
+Store disease and diet recommendations
+
+Accept disease name as input
+
+Match disease with database
+
+Suggest appropriate diet
+
+Stop
+## Monkey Banana Problem
+Start
+
+Define initial state (monkey, box, banana positions)
+
+Define goal state (monkey gets banana)
+
+Define valid actions (move, push box, climb)
+
+Apply actions to reach goal
+
+Display solution steps
+
+Stop
+## Fruit and Color Using Backtracking
+Start
+
+Store fruit–color pairs
+
+Accept fruit or color as input
+
+Use backtracking to find all matches
+
+Display possible solutions
+
+Stop
+## Best First Search
+Start
+
+Initialize open list with start node
+
+Select node with best heuristic value
+
+Check if goal reached
+
+Expand node and add successors
+
+Repeat until goal found
+
+Display solution path
+
+Stop
+## Medical DiagnosisStart
+
+Store symptoms and diseases
+
+Accept symptoms as input
+
+Match symptoms with disease rules
+
+Diagnose disease
+
+Display result
+
+Stop
+## Forward Chaining
+Start
+
+Store facts and rules
+
+Apply rules on known facts
+
+Generate new facts
+
+Repeat until goal is derived
+
+Display inferred facts
+## Backward Chaining
+Start
+
+Set goal to be proven
+
+Search rules that conclude the goal
+
+Prove required sub-goals
+
+Match with known facts
+
+If all sub-goals satisfied, goal is true
+
+Stop
+## Web Blog Using WordPress
+Start
+
+Create WordPress account
+
+Create a new blog
+
+Add title, headings, and content
+
+Insert anchor tags and links
+
+Publish blog
+
+Stop
+## Pattern Matching in Prolog
+Start
+
+Define facts representing valid patterns
+
+Accept an input pattern from the user
+
+Compare the input with stored patterns
+
+If input matches any pattern, display “Pattern Matched”
+
+Otherwise, display “Pattern Not Matched”
+
+Stop
+## Find Number of Vowels in Prolog
+Start
+
+Define vowel facts (a, e, i, o, u)
+
+Accept a list of characters as input
+
+Check the first character of the list
+
+If it is a vowel, increment the count
+
+Move to the next character in the list
+
+Repeat steps until list becomes empty
+
+Display total number of vowels
+
+Stop
+
 
 
 
